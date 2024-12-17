@@ -3,10 +3,14 @@
     flex-direction: row;
     gap: 30px;  
     border-bottom: 2px solid rgba(0, 0, 0, 0.438);
+    background-color: #1C1E2A;
+    text-align: center;
 }
 
-a{
+.navbar{
     text-decoration: none;
+    color: white;
+   
 }
 
  .content{

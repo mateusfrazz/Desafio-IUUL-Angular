@@ -1,0 +1,9 @@
+#conteiner{
+     width: 100%;
+     min-height: 80vh; /* Ajusta para ocupar espaço suficiente */
+     border: 2px green;
+}
+
+.text{
+    width: 50%;
+}

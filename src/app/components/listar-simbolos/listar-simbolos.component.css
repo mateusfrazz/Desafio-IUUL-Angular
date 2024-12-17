@@ -1,5 +1,6 @@
 .table-container {
   display: flex;
+  flex-direction: column;
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center; /* Centraliza verticalmente */
   min-height: 80vh; /* Ajusta para ocupar espaço suficiente */
@@ -13,7 +14,7 @@
 }
 
 table {
-  width: 100%; /* Ocupa toda a largura disponível */
+  width: 63%; /* Ocupa toda a largura disponível */
   border-collapse: collapse; /* Remove os espaços entre bordas */
 }
 
@@ -35,5 +36,14 @@ tr:hover {
 .responsive-table {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona leve sombra */
   border-radius: 8px; /* Bordas arredondadas */
+}
+
+.text{
+  margin-bottom: 60px;
+}
+
+.filter{
+   width: 63%;
+   margin-bottom: 11px;
 }
 
