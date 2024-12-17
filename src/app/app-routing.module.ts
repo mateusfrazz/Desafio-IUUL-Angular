@@ -5,9 +5,9 @@ import { ListarSimbolosComponent } from './components/listar-simbolos/listar-sim
 import { ConverterMoedasComponent } from './components/converter-moedas/converter-moedas.component';
 import { ConverterRealParaDolarComponent } from './components/converter-real-para-dolar/converter-real-para-dolar.component';
 const routes: Routes = [
-  {path:'Home', component:HomeComponent},
+  {path:'ConversordeMoedas', component:HomeComponent},
   {path:'ListarSimbolos', component:ListarSimbolosComponent},//Rota de listar Simbolos
-  {path: '', redirectTo: '/Home', pathMatch: 'full' },
+  {path: '', redirectTo: '/ConversordeMoedas', pathMatch: 'full' },
   {path:'ConverterMoedas', component:ConverterMoedasComponent},
   {path:'ConverterRealParaDolar', component:ConverterRealParaDolarComponent},
 
