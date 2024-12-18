@@ -15,7 +15,6 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 export class ListarSimbolosComponent implements OnInit, AfterViewInit {
   displayedColumns = ['code', 'name'];
   listaDeMoedas: Moeda[] = [];
-  filter: Moeda[] = [];
   dataSource: MatTableDataSource<Moeda>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -32,7 +31,6 @@ export class ListarSimbolosComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getSimbolos();
-    this.filter = this.listaDeMoedas;
   }
 
   getSimbolos(): void {
@@ -43,29 +41,25 @@ export class ListarSimbolosComponent implements OnInit, AfterViewInit {
           name,
         }));
         this.dataSource.data = this.listaDeMoedas;
-      },
-      complete: () => {
-        // this.dataSource.paginator = this.paginator;
       }
     });
   }
 
-  sortChange(sortState: Sort) {
+  search(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    const value = target.value.trim().toLowerCase();
+
+    // Aplicar filtro na lista de moedas
+    this.dataSource.data = this.listaDeMoedas.filter(moeda =>
+      moeda.name.toLowerCase().includes(value) || moeda.code.toLowerCase().includes(value)
+    );
+  }
+
+  sortChange(sortState: Sort): void {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-  search(e: Event){
-    const target = e.target as HTMLInputElement
-    const value = target.value
-    this.listaDeMoedas = this.filter.filter((quiz)=>{ 
-        return quiz.code?.toLowerCase().includes(value)
-    })
-
-    }
-
-  }
-
+}
