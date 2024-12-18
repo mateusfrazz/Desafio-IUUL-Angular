@@ -10,6 +10,7 @@ import { ConversaoResponse } from '../interfaces/ConversaoResponse';
 })
 export class MoedasService {
   private apiURL = 'https://v6.exchangerate-api.com/v6/d689891c6cea0995886cf97a/codes'
+  private history : {dataConversao:string; horaConversao:string; valorInformado:string; moedaSeleciona:string;resultado:string, moedaConvertida:string;taxa:string;acao:string}[]=[]
   
   constructor(private http:HttpClient) {}
 
@@ -21,4 +22,13 @@ export class MoedasService {
     const url: string = `https://v6.exchangerate-api.com/v6/d689891c6cea0995886cf97a/pair/${moedaOrigem}/${moedaDestino}/${valor}`;
     return this.http.get<ConversaoResponse>(url);
   }
+
+  addConversion( dataConversao:string, horaConversao:string, valorInformado:string, moedaSeleciona:string,resultado:string, moedaConvertida:string,taxa:string,acao:string):void{
+    const conversion ={dataConversao, horaConversao, valorInformado,moedaSeleciona, resultado,moedaConvertida,taxa,acao};
+    this.history.push(conversion)
+
+    //salvar dados no localStorage
+    localStorage.setItem('ConversionHistory', JSON.stringify(this.history))
+  }
+
 }

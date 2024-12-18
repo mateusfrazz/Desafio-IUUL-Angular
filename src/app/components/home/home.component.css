@@ -22,6 +22,7 @@
 
 .img-content img{
     width: 620px;
+    animation: pulse 1.5s infinite;
 }
 
 .btn{
@@ -44,12 +45,12 @@ span{
     color: rgb(132, 13, 301);
 }
 
-a{
+.navbar{
     text-decoration: none;
     color: rgb(132, 13, 301);
     cursor: pointer;
-    transition: background-color 1s ease 0s;
 }
+
 
 /* transições */
 .btn:hover{
@@ -59,4 +60,5 @@ a{
 a:hover{
     color: #f7f4f8a5;
 }
+
 

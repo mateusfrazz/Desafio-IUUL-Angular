@@ -1,4 +1,7 @@
-<div id="conteiner" class="d-flex justify-content-center align-items-center flex-column">
+<div
+  id="conteiner"
+  class="d-flex justify-content-center align-items-center flex-column"
+>
   <div class="text text-center mt-5">
     <h1 class="text-light">Converter Moeda</h1>
   </div>
@@ -8,7 +11,7 @@
         <mat-label>Moeda Origem</mat-label>
         <mat-select [formControl]="moedaOrigemControl">
           <mat-option *ngFor="let moeda of listaDeMoedas" [value]="moeda.code">
-            {{moeda.name}}
+            {{ moeda.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -18,7 +21,7 @@
         <mat-label>Moeda Destino</mat-label>
         <mat-select [formControl]="moedaDestinoControl">
           <mat-option *ngFor="let moeda of listaDeMoedas" [value]="moeda.code">
-            {{moeda.name}}
+            {{ moeda.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -26,24 +29,38 @@
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Valor</mat-label>
-        <input matInput placeholder=""[formControl]="valorConversaoControl">
+        <input matInput placeholder="" [formControl]="valorConversaoControl" />
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Resultado</mat-label>
-        <input matInput placeholder=""[formControl]="resultadoConversaoControl" readonly>
+        <input
+          matInput
+          placeholder=""
+          [formControl]="resultadoConversaoControl"
+          readonly
+        />
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Taxa de Conversão</mat-label>
-        <input matInput placeholder="" [formControl]="taxaControl" readonly>
+        <input matInput placeholder="" [formControl]="taxaControl" readonly />
       </mat-form-field>
     </div>
   </div>
   <div class="button">
-    <button class="btn btn-success" (click)="converterMoedas()" [disabled]="!moedaOrigemControl.valid || !moedaDestinoControl.valid || !valorConversaoControl.valid">Calcular Conversão</button>
+    <button
+      class="btn btn-success"
+      (click)="converterMoedas()"
+      [disabled]="
+        !moedaOrigemControl.valid ||
+        !moedaDestinoControl.valid ||
+        !valorConversaoControl.valid
+      "
+    >
+      Calcular Conversão
+    </button>
   </div>
 </div>
-

@@ -4,23 +4,36 @@ import { Moeda } from '../../interfaces/Moeda';
 import { FormControl, Validators } from '@angular/forms';
 import { subscribe } from 'diagnostics_channel';
 import { ConversaoResponse } from '../../interfaces/ConversaoResponse';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-converter-moedas',
   standalone: false,
-  
+
   templateUrl: './converter-moedas.component.html',
-  styleUrl: './converter-moedas.component.css'
+  styleUrl: './converter-moedas.component.css',
 })
 export class ConverterMoedasComponent implements OnInit {
   listaDeMoedas: Moeda[] = [];
-  moedaOrigemControl: FormControl = new FormControl({value:null,disabled:false},Validators.required);
-  moedaDestinoControl: FormControl = new FormControl({value:null,disabled:false},Validators.required);
-  valorConversaoControl: FormControl = new FormControl({value:null,disabled:false},Validators.required);
-  resultadoConversao! : ConversaoResponse;
+  moedaOrigemControl: FormControl = new FormControl(
+    { value: null, disabled: false },
+    Validators.required
+  );
+  moedaDestinoControl: FormControl = new FormControl(
+    { value: null, disabled: false },
+    Validators.required
+  );
+  valorConversaoControl: FormControl = new FormControl(
+    { value: null, disabled: false },
+    Validators.required
+  );
+  resultadoConversao!: ConversaoResponse;
   resultadoConversaoControl: FormControl = new FormControl();
-  taxaControl: FormControl = new FormControl()
-  constructor(private moedaService: MoedasService){}
+  taxaControl: FormControl = new FormControl();
+  constructor(
+    private moedaService: MoedasService,
+    private _snackBar: MatSnackBar
+  ) {}
   ngOnInit(): void {
     this.getSimbolos();
     // this.valorConversaoControl.valueChanges.subscribe((valorConversao)=>{
@@ -34,24 +47,25 @@ export class ConverterMoedasComponent implements OnInit {
           code,
           name,
         }));
-      }
+      },
     });
-    console.log(this.listaDeMoedas)
+    console.log(this.listaDeMoedas);
   }
 
-  converterMoedas():void {
+  converterMoedas(): void {
     const moedaOrigemValor = this.moedaOrigemControl.value;
     const moedaDestinoValor = this.moedaDestinoControl.value;
     const valorConversao = this.valorConversaoControl.value;
-     this.moedaService.converterMoeda(moedaOrigemValor, moedaDestinoValor, valorConversao).subscribe((response)=>{
+    this.moedaService
+      .converterMoeda(moedaOrigemValor, moedaDestinoValor, valorConversao)
+      .subscribe((response) => {
         this.resultadoConversao = response;
-        this.mapearValoresInput(response)
-     })
+        this.mapearValoresInput(response);
+      });
   }
 
-  mapearValoresInput(valor:ConversaoResponse):void{
-     this.resultadoConversaoControl.setValue(valor.conversion_result);
-     this.taxaControl.setValue(valor.conversion_rate);
+  mapearValoresInput(valor: ConversaoResponse): void {
+    this.resultadoConversaoControl.setValue(valor.conversion_result);
+    this.taxaControl.setValue(valor.conversion_rate);
   }
-
 }
