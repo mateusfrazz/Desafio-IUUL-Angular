@@ -18,6 +18,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -41,8 +42,9 @@ import {MatInputModule} from '@angular/material/input';
     MatSidenavModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatInputModule
-
+    MatInputModule,
+    ReactiveFormsModule, 
+    FormsModule,
   ],
   providers: [
     provideClientHydration(withEventReplay()),

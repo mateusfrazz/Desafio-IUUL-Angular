@@ -6,39 +6,44 @@
     <div>
       <mat-form-field>
         <mat-label>Moeda Origem</mat-label>
-        <select matNativeControl required>
-          <option value="volvo">Moeda Origem</option>
-        </select>
+        <mat-select [formControl]="moedaOrigemControl">
+          <mat-option *ngFor="let moeda of listaDeMoedas" [value]="moeda.code">
+            {{moeda.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
         <mat-label>Moeda Destino</mat-label>
-        <select matNativeControl required>
-          <option value="volvo">Volvo</option>
-        </select>
+        <mat-select [formControl]="moedaDestinoControl">
+          <mat-option *ngFor="let moeda of listaDeMoedas" [value]="moeda.code">
+            {{moeda.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Valor</mat-label>
-        <input matInput placeholder="" value="Sushi">
+        <input matInput placeholder=""[formControl]="valorConversaoControl">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Resultado</mat-label>
-        <input matInput placeholder="" value="Sushi">
+        <input matInput placeholder=""[formControl]="resultadoConversaoControl" readonly>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Taxa de Conversão</mat-label>
-        <input matInput placeholder="" value="Sushi">
+        <input matInput placeholder="" [formControl]="taxaControl" readonly>
       </mat-form-field>
     </div>
   </div>
   <div class="button">
-    <button class="btn btn-success">Calcular Conversão</button>
+    <button class="btn btn-success" (click)="converterMoedas()" [disabled]="!moedaOrigemControl.valid || !moedaDestinoControl.valid || !valorConversaoControl.valid">Calcular Conversão</button>
   </div>
 </div>
+
