@@ -5,6 +5,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { subscribe } from 'diagnostics_channel';
 import { ConversaoResponse } from '../../interfaces/ConversaoResponse';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HistoricoConversaoService } from '../../services/historico-conversao.service';
+import { response } from 'express';
+import { HistoricoConversao } from '../../interfaces/historicoConversao';
 
 @Component({
   selector: 'app-converter-moedas',
@@ -30,8 +33,10 @@ export class ConverterMoedasComponent implements OnInit {
   resultadoConversao!: ConversaoResponse;
   resultadoConversaoControl: FormControl = new FormControl();
   taxaControl: FormControl = new FormControl();
+  historico: HistoricoConversao[]= []
   constructor(
     private moedaService: MoedasService,
+    private historicoConversao : HistoricoConversaoService, 
     private _snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
@@ -61,6 +66,13 @@ export class ConverterMoedasComponent implements OnInit {
       .subscribe((response) => {
         this.resultadoConversao = response;
         this.mapearValoresInput(response);
+
+       const historicos  = {
+        moedaSeleciona: moedaOrigemValor,
+        moedaConvertida: moedaDestinoValor,
+        valor: valorConversao,
+        resultado :response.conversion_result
+       }
       });
   }
 
